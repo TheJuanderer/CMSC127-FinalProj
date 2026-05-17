@@ -125,7 +125,7 @@ VALUES
 
 -- create items table
 CREATE TABLE `items` (
-    `item_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `item_id` INT(11) NOT NULL,
     `item_name` VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -138,7 +138,7 @@ VALUES (1, 'iPhone 13'),
 --
 -- Indexes for dumped tables
 --
---added keys to all the tables
+-- added keys to all the tables
 ALTER TABLE `categories`
     ADD PRIMARY KEY (`category_id`);
 
@@ -161,7 +161,7 @@ ALTER TABLE `items`
     ADD PRIMARY KEY (`item_id`),
     MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
---defined where to increment the IDs
+-- defined where to increment the IDs
 ALTER TABLE `users`
     MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4; -- bc i defined new ids already when i inserted
 
@@ -172,7 +172,7 @@ ALTER TABLE `claims`
     MODIFY `claim_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 
---make sure that some keys always has references to other tables' keys
+-- make sure that some keys always has references to other tables' keys
 ALTER TABLE `reports`
     ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`),
     ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
