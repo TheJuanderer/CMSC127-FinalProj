@@ -1,3 +1,6 @@
+/*this is the register form for creating new users
+this is the "registerView.php" */
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +13,11 @@
     <div>
         <form method="POST" action="register.php">
             <label>name</label>
-            <input name="name">
-            <label>email</label>
-            <input name="email">
+            <input name="name" required>
+            <label>contact number</label>
+            <input name="contactNo" type="text" required>
             <label>password</label>
-            <input name="password" type="password">
+            <input name="password" type="password" required>
             <button>Create Account</button>
         </form>
     </div>
