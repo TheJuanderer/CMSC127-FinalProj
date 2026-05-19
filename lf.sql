@@ -83,7 +83,7 @@ CREATE TABLE `reports` (
     `report_id` int(11) NOT NULL,
     `category_id` int(11) NOT NULL,
     `user_id` int(11) NOT NULL,
-    `item_name` varchar(255) NOT NULL,
+    `item_id` int(11) NOT NULL,
     `description` text,
     `type` varchar(50) NOT NULL,
     `status` varchar(50) NOT NULL,
@@ -97,24 +97,18 @@ CREATE TABLE `reports` (
 -- Dumping data for table `reports`
 --
 
--- --------------------------------------------------------
--- Dumping data for table `reports`
--- --------------------------------------------------------
-
-INSERT INTO `reports` (`report_id`, `category_id`, `user_id`, `item_name`, `description`, `type`, `status`, `image_url`, `last_seen_date`, `last_seen_location`)
+INSERT INTO `reports` (`report_id`, `category_id`, `user_id`, `item_id`, `description`, `type`, `status`, `image_url`, `last_seen_date`, `last_seen_location`)
 VALUES
-(1, 1, 2, 'iPhone 13', 'black color, cracked screen', 'Lost', 'OPEN', 'uploads/iphone.jpg', '2026-10-01', 'CUB'),
-(2, 3, 3, 'CLN Wallet', 'brown leather', 'Found', 'OPEN', 'uploads/wallet.jpg', '2025-10-02', 'CAS CL2');
+(1, 1, 2, 1, 'black color, cracked screen', 'Lost', 'OPEN', 'uploads/iphone.jpg', '2026-10-01', 'CUB'),
+(2, 3, 3, 2, 'brown leather', 'Found', 'OPEN', 'uploads/wallet.jpg', '2025-10-02', 'CAS CL2');
 
-
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `claims`
 --
 
 CREATE TABLE `claims` (
+    `claim_id` int(11) NOT NULL,
     `user_id` int(11) NOT NULL,
     `report_id` int(11) NOT NULL,
     `claim_date` timestamp DEFAULT CURRENT_TIMESTAMP
@@ -124,16 +118,27 @@ CREATE TABLE `claims` (
 -- Dumping data for table `claims`
 --
 
-INSERT INTO `claims` (`user_id`, `report_id`, `claim_date`)
+INSERT INTO `claims` (`claim_id`, `user_id`, `report_id`, `claim_date`)
 VALUES
-(3, 1, '2026-05-10');
+(1, 3, 1, '2026-05-10');
+
+
+-- create items table
+CREATE TABLE `items` (
+    `item_id` INT(11) NOT NULL,
+    `item_name` VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `items` (`item_id`, `item_name`)
+VALUES (1, 'iPhone 13'),
+(2, 'CLN Wallet');
 
 
 
 --
 -- Indexes for dumped tables
 --
-
+-- added keys to all the tables
 ALTER TABLE `categories`
     ADD PRIMARY KEY (`category_id`);
 
@@ -143,23 +148,35 @@ ALTER TABLE `users`
 ALTER TABLE `reports`
     ADD PRIMARY KEY (`report_id`),
     ADD KEY `category_id` (`category_id`),
-    ADD KEY `user_id` (`user_id`);
+    ADD KEY `user_id` (`user_id`),
+    ADD KEY `item_id` (`item_id`);
 
 ALTER TABLE `claims`
-    ADD PRIMARY KEY (`user_id`, `report_id`),
+    ADD  PRIMARY KEY (`claim_id`),
+    ADD KEY `user_id` (`user_id`),
     ADD KEY `report_id` (`report_id`);
 
 
+ALTER TABLE `items`
+    ADD PRIMARY KEY (`item_id`),
+    MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+-- defined where to increment the IDs
 ALTER TABLE `users`
     MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4; -- bc i defined new ids already when i inserted
 
 ALTER TABLE `reports`
     MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3; -- same reasons here po
 
+ALTER TABLE `claims`
+    MODIFY `claim_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+
+-- make sure that some keys always has references to other tables' keys
 ALTER TABLE `reports`
     ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`),
-    ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+    ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+    ADD CONSTRAINT `reports_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
 
 ALTER TABLE `claims`
     ADD CONSTRAINT `claims_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
