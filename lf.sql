@@ -47,7 +47,8 @@ VALUES
 (4, 'Umbrella'),
 (5, 'Documents'),
 (6, 'Stationary'),
-(7, 'Other');
+(7, 'Perishables (Food/Medicine)'),
+(8, 'Other');
 
 -- --------------------------------------------------------
 
@@ -84,23 +85,24 @@ CREATE TABLE `reports` (
     `category_id` int(11) NOT NULL,
     `user_id` int(11) NOT NULL,
     `item_id` int(11) NOT NULL,
-    `description` text,
-    `type` varchar(50) NOT NULL,
-    `status` varchar(50) NOT NULL,
+    `item_name` varchar(255) NOT NULL,
+    `item_desc` text,
+    `report_type` varchar(50) NOT NULL,
+    `report_status` varchar(50) NOT NULL,
     `image_url` varchar(255),
     `last_seen_date` date,
     `last_seen_location` varchar(255),
-    `when_made` timestamp DEFAULT CURRENT_TIMESTAMP
+    `report_date_made` timestamp DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `reports`
 --
 
-INSERT INTO `reports` (`report_id`, `category_id`, `user_id`, `item_id`, `description`, `type`, `status`, `image_url`, `last_seen_date`, `last_seen_location`)
+INSERT INTO `reports` (`report_id`, `category_id`, `user_id`, `item_id`, `item_desc`, `report_type`, `report_status`, `image_url`, `last_seen_date`, `last_seen_location`, `report_date_made`)
 VALUES
-(1, 1, 2, 1, 'black color, cracked screen', 'Lost', 'OPEN', 'uploads/iphone.jpg', '2026-10-01', 'CUB'),
-(2, 3, 3, 2, 'brown leather', 'Found', 'OPEN', 'uploads/wallet.jpg', '2025-10-02', 'CAS CL2');
+(1, 1, 2, 1, 'black color, cracked screen', 'Lost', 'OPEN', 'uploads/iphone.jpg', '2026-10-01', 'CUB', '2026-05-20'),
+(2, 3, 3, 2, 'brown leather', 'Found', 'OPEN', 'uploads/wallet.jpg', '2025-10-02', 'CAS CL2', '2026-05-20');
 
 
 --
