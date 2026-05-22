@@ -1,6 +1,6 @@
 <?php
+include 'DBConnector.php';
 session_start();
-$conn = new mysqli("localhost", "root", "", "lf_db");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

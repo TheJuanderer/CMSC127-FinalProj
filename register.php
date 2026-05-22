@@ -2,14 +2,9 @@
 
 <?php
 // database connection
-$conn = new mysqli("localhost", "root", "", "lf_db");
+include 'DBConnector.php';
 
-// check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// get form registerView
+// get from registerView
 $name = $_POST['name'];
 $contactNo = $_POST['contactNo'];
 $password = $_POST['password'];

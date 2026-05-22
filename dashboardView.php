@@ -8,8 +8,15 @@ this is also where a user can claim or unclaim a report -->
     
     </head>
     <body>
-        <a href="loginView.php">log-out</a>
+        <table> 
+            <tr>
+                <td><a href="loginView.php">log-out</a></td>
+                <td><a href="newReportPage.php">create reports</a></td>
+            </tr>
+        </table>
+       
         <h2>This is the dashboard!</h2>
+
         
         <form method = "POST" action = "dashboardView.php">
             <label>Search using report status</label>
