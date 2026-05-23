@@ -34,7 +34,7 @@ $sql = "INSERT INTO `reports` (`category_id`, `user_id`, `item_id`, `item_desc`,
 
 
         if ($conn->query($sql) === TRUE) {
-            header("Location: index.html"); //redirect back to home
+            header("Location: dashboardView.php"); //redirect back to home
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
