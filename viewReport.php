@@ -68,7 +68,7 @@ echo "<table>";
 echo "</table>";
    
     
-//return an array of the 
+//returns an array (if there is) of the query that is executed
 function fetchAllRows($conn, $query) {
     $res = $conn->query($query);
 
