@@ -2,6 +2,7 @@
 //this is the page where reports are updated
 session_start();
 include 'DBConnector.php';
+include 'helpers/queryItems.php';
 
 
 if (!isset($_POST['report_id'])) {
@@ -34,7 +35,7 @@ $report = $result->fetch_assoc();
             <tr>
                 <td class="tlabel">Item Name</td>
                 <td><input type="text" name="name"
-                value = <?php?>
+                value = <?php echo getItemName($conn, $reportID)?>
                 ></td>
             </tr>
 
@@ -72,7 +73,7 @@ $report = $result->fetch_assoc();
             <tr>
                 <td class="tlabel">Photo of Item*</td>
                 <td><img src="<?= $report['image_url'] ?>" width="150"></td>
-                <td><input type="file" name="image" accept="uploads/*" required></td>
+                <td><input type="file" name="image" accept="uploads/*" ></td>
             </tr>
 
             <tr>
