@@ -62,13 +62,18 @@ echo "<table>";
             <td>{$row['item_desc']}</td>
             <td>{$row['report_type']}</td>
             <td>{$row['report_status']}</td>
-            <td>"; include 'editReportAction.php'; echo "</td>
+
+
+
+            <td>"; include 'editReportAction.php';
+            echo "</td>
+
         </tr>
         ";
+>>>>>>> ec0190e23ba326317b4c6b8501b19595c7e42eb0
     }
 echo "</table>";
-   
-    
+
 //returns an array (if there is) of the query that is executed
 function fetchAllRows($conn, $query) {
     $res = $conn->query($query);
