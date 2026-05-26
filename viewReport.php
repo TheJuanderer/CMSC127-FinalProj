@@ -62,32 +62,18 @@ echo "<table>";
             <td>{$row['item_desc']}</td>
             <td>{$row['report_type']}</td>
             <td>{$row['report_status']}</td>
-        <td>";
 
-        // claim button -- show if not your report
-        if ($row['user_id'] != $_SESSION['user_id']) {
-            echo "
-            <form method = 'POST' action = 'createClaim.php'>
-                <input type = 'hidden' name = 'report_id' value = '{$row['report_id']}'>
-                <button type = 'submit'>Claim</button>
-            </form>";
-        }
 
-        // resolve button -- show only if you own the report
-        if ($row['user_id'] == $_SESSION['user_id']) {
-            echo "
-            <form method = 'POST' action = 'resolveClaim.php'>
-                <input type = 'hidden' name = 'report_id' value = '{$row['report_id']}'>
-                <button type = 'submit'>Resolve</button>
-            </form>";
-        }
 
-        echo "</td>
-        </tr>";
+            <td>"; include 'editReportAction.php';
+            echo "</td>
+
+        </tr>
+        ";
+>>>>>>> ec0190e23ba326317b4c6b8501b19595c7e42eb0
     }
 echo "</table>";
-   
-    
+
 //returns an array (if there is) of the query that is executed
 function fetchAllRows($conn, $query) {
     $res = $conn->query($query);
