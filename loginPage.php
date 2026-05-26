@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['name'] = $user['name'];
 
-        header("Location: dashboardView.php");
+        header("Location: dashboardPage.php");
         exit();
 
     } else {
@@ -39,6 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <br>
 
-<a href="registerView.php">
+<a href="registerPage.php">
     <button>Register</button>
 </a>
