@@ -62,8 +62,28 @@ echo "<table>";
             <td>{$row['item_desc']}</td>
             <td>{$row['report_type']}</td>
             <td>{$row['report_status']}</td>
-        </tr>
-        ";
+        <td>";
+
+        // claim button -- show if not your report
+        if ($row['user_id'] != $_SESSION['user_id']) {
+            echo "
+            <form method = 'POST' action = 'createClaim.php'>
+                <input type = 'hidden' name = 'report_id' value = '{$row['report_id']}'>
+                <button type = 'submit'>Claim</button>
+            </form>";
+        }
+
+        // resolve button -- show only if you own the report
+        if ($row['user_id'] == $_SESSION['user_id']) {
+            echo "
+            <form method = 'POST' action = 'resolveClaim.php'>
+                <input type = 'hidden' name = 'report_id' value = '{$row['report_id']}'>
+                <button type = 'submit'>Resolve</button>
+            </form>";
+        }
+
+        echo "</td>
+        </tr>";
     }
 echo "</table>";
    
