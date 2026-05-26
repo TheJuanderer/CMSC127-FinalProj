@@ -62,8 +62,10 @@ echo "<table>";
             <td>{$row['item_desc']}</td>
             <td>{$row['report_type']}</td>
             <td>{$row['report_status']}</td>
+
             <td>"; include 'editReportAction.php';
             echo "</td>
+
         </tr>
         ";
     }
