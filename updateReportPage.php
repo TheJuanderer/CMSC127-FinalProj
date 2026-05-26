@@ -35,7 +35,7 @@ $report = $result->fetch_assoc();
             <tr>
                 <td class="tlabel">Item Name</td>
                 <td><input type="text" name="name"
-                value = <?php echo getItemName($conn, $reportID)?>
+                value = "<?php echo getItemName($conn, $reportID)?>"
                 ></td>
             </tr>
 

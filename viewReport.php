@@ -70,7 +70,7 @@ echo "<table>";
 
         </tr>
         ";
->>>>>>> ec0190e23ba326317b4c6b8501b19595c7e42eb0
+
     }
 echo "</table>";
 

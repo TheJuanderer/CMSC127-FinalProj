@@ -1,3 +1,6 @@
+/* this is the file that updates the report whenever you update it from the 
+updateReportPage */
+
 <?php
 session_start();
 include 'DBConnector.php';
@@ -95,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "
             <script>
                 alert('Report updated successfully!');
-                window.location.href = 'dashboard.php';
+                window.location.href = 'dashboardPage.php';
             </script>
         ";
 
@@ -103,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "Error updating report: " . $conn->error;
     }
-    header ("Location: dashboardPage.php");
+    
 } else {
 
     echo "Invalid request.";
