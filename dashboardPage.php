@@ -18,7 +18,9 @@ this is also where a user can claim or unclaim a report -->
         <h2>This is the dashboard!</h2>
 
         <h3>Reports available</h3>
+
         <form method="POST" action="dashboardPage.php">
+
             <table border="0" cellpadding="8">
 
                 <tr>
