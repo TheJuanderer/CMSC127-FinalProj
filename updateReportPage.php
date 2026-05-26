@@ -88,6 +88,11 @@ $report = $result->fetch_assoc();
                 value="<?= htmlspecialchars($report['last_seen_location']) ?>"
                 required></td>
             </tr>
+
+            <tr>
+                <td class="tlabel"></td>
+                <td><input type="submit"></td>
+            </tr>
         </table>
 
     </form>
