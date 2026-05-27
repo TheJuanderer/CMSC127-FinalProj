@@ -42,7 +42,7 @@ if ($dateSearch !== 'ALL') {
 }
 
 // BASE QUERY
-$repQuery = "SELECT * FROM reports";
+$repQuery = "SELECT *, users.name FROM reports JOIN users ON reports.user_id = users.user_id";
 
 // ATTACH CONDITIONS IF ANY
 if (count($conditions) > 0) {
@@ -53,17 +53,34 @@ $rows = fetchAllRows($conn, $repQuery);
 
     //returns info about the reports as html elements
 echo "<table>";
+    //enter column names
+    echo "
+        <tr>
+            <th>Report ID</th>
+            <th>Category ID</th>
+            <th>Who Created this report?</th>
+            <th>Item Description</th>
+            <th>Report Type</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        ";
+
     foreach ($rows as $row) {
         //create html elements
         echo "
         <tr>
             <td>{$row['report_id']}</td>
             <td>{$row['category_id']}</td>
+            <td>{$row['name']}</td>
             <td>{$row['item_desc']}</td>
             <td>{$row['report_type']}</td>
             <td>{$row['report_status']}</td>
             <td>"; include 'editReportAction.php';
             include 'deleteReportAction.php';
+            include 'claimReportAction.php';
+            //create 4th button
+            include 'resolveReportAction.php';
             echo "</td>
 
         </tr>
@@ -78,7 +95,7 @@ function fetchAllRows($conn, $query) {
 
     if (!$res) {
         die("Query failed: " . $conn->error);
-    }
+    }   
 
     $rows = [];
 

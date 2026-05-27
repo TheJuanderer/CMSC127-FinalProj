@@ -1,3 +1,4 @@
+/*this is where a claim is created */
 <?php
 include 'DBConnector.php';
 include 'checkProtectedPage.php';
@@ -9,9 +10,10 @@ if (!$report_id) {
     die("No report specified.");
 }
 
+
 // check if the report exists and get its owner
 
-$res = $conn->query("SELECT user_id FROM reports WHERE report_id = report_id");
+$res = $conn->query("SELECT user_id FROM reports WHERE report_id = $report_id");
 $report = $res->fetch_assoc();
 
 if (!$report) {
@@ -23,10 +25,22 @@ if ($report['user_id'] == $user_id) {
 
 }
 
-// insert the claim
-$conn->query("INSERT INTO claims (user_id, report_id) VALUES ($user_id, $report_id");
+//check if your claim exists in this report
+$check = $conn->query("
+    SELECT claim_id 
+    FROM claims 
+    WHERE user_id = $user_id 
+    AND report_id = $report_id
+");
 
-header("Location: viewReport.php");
+if ($check->num_rows > 0) {
+    die("You already claimed this report.");
+}
+
+// insert the claim
+$conn->query("INSERT INTO claims (user_id, report_id) VALUES ($user_id, $report_id)");
+
+header("Location: dashboardPage.php");
 exit();
 
 ?>
