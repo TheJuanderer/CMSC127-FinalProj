@@ -22,7 +22,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if user uploads a new image,
         replace the old image path
     */
-    $imagePath = null;
+
+        $currentImageQuery = "
+        SELECT image_url 
+        FROM reports 
+        WHERE report_id = $reportID
+    ";
+
+    $res = $conn->query($currentImageQuery);
+    $row = $res->fetch_assoc();
+
+    $imagePath = $row['image_url']; // default = KEEP OLD IMAGE
+    
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
 
@@ -72,27 +83,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         UPDATE REPORT TABLE
     */
 
+   
     $updateReportSQL = "
-        UPDATE reports
-        SET
-            category_id = $categoryID,
-            item_desc = '$itemDesc',
-            report_type = '$reportType',
-            last_seen_date = '$lastSeenDate',
-            last_seen_location = '$lastSeenLocation'
+    UPDATE reports
+    SET
+        category_id = $categoryID,
+        item_desc = '$itemDesc',
+        report_type = '$reportType',
+        last_seen_date = '$lastSeenDate',
+        last_seen_location = '$lastSeenLocation',
+        image_url = '$imagePath'
+    WHERE report_id = $reportID
     ";
-
-    // only update image if a new one was uploaded
-    if ($imagePath !== null) {
-        $updateReportSQL .= ",
-            image_url = '$imagePath'
-        ";
-    }
-
-    $updateReportSQL .= "
-        WHERE report_id = $reportID
-    ";
-
+       
     if ($conn->query($updateReportSQL)) {
 
         echo "
