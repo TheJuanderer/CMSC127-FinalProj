@@ -23,7 +23,7 @@ echo "<h2>Claims for Report #$report_id</h2>";
 echo "<table>";
 echo "<tr><th>User</th><th>Date</th><th>Action</th></tr>";
 
-//if there is no claims
+//if there is no claims on the current report
 if ($result->num_rows<=0){
     echo "
     <tr>
