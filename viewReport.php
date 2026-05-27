@@ -13,6 +13,8 @@ $conditions = [];
 //get the search filter presets
 $statusSearch = $_POST['statusSearch'] ?? 'ALL';
 $dateSearch = $_POST['datePreset'] ?? 'ALL';
+$typeFilter = $_POST['typeFilter'] ?? 'ALL';
+$categoryFilter = $_POST['categoryFilter'] ?? 'ALL';
 
 // //output the statusSearch string
 // echo "<p>$statusSearch</p>";
@@ -52,6 +54,16 @@ if ($dateSearch !== 'ALL') {
 
     // CUSTOM will come later when you add dateFrom/dateTo inputs
 }
+
+    // TYPE FILTER (Lost / Found)
+    if ($typeFilter !== 'ALL') {
+        $conditions[] = "report_type = '$typeFilter'";
+    }
+
+    // CATEGORY FILTER
+    if ($categoryFilter !== 'ALL') {
+        $conditions[] = "category_id = '$categoryFilter'";
+    }
 
 // BASE QUERY
 $repQuery = "SELECT *, users.name FROM reports JOIN users ON reports.user_id = users.user_id";

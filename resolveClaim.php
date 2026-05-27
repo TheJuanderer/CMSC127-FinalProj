@@ -22,9 +22,9 @@ if ($report['user_id'] != $user_id) {
 }
 
 // close the report
-/*
+
 $conn->query("UPDATE reports SET report_status = 'CLOSED' WHERE report_id = $report_id");
-*/
+
 header("Location: dashboardPage.php");
 exit();
 

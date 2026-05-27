@@ -31,6 +31,12 @@ $isLoggedIn = isset($_SESSION['user_id']);
                     <?php else: ?>
                         <a href="loginPage.php">log-in</a>
                     <?php endif; ?>
+                    <?php
+                        if ($_SESSION['role'] === 'admin') {
+                            echo "<a href='adminPanel.php'>Admin Panel</a>";
+                        }
+                        
+                    ?>
                 </td>
                 <td>
                     <?php if ($isLoggedIn): ?>
@@ -71,6 +77,34 @@ $isLoggedIn = isset($_SESSION['user_id']);
                             <option value="LAST_7">Last 7 days</option>
                             <option value="LAST_30">Last 30 days</option>
                             <option value="CUSTOM">Custom range</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label>Report Type</label></td>
+                    <td>
+                        <select name="typeFilter">
+                            <option value="ALL">ALL</option>
+                            <option value="Lost">Lost</option>
+                            <option value="Found">Found</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label>Category</label></td>
+                    <td>
+                        <select name="categoryFilter">
+                            <option value="ALL">ALL</option>
+                            <option value="1">Electronics</option>
+                            <option value="2">Jewelry</option>
+                            <option value="3">Wallets</option>
+                            <option value="4">Umbrella</option>
+                            <option value="5">Documents</option>
+                            <option value="6">Stationary</option>
+                            <option value="7">Perishables</option>
+                            <option value="8">Other</option>
                         </select>
                     </td>
                 </tr>

@@ -11,7 +11,7 @@ $last_seen_date = $_POST["last-seen-date"];
 $last_seen_loc = $_POST["last-seen-loc"];
 
 
-$user_id = $_SESSION['user_id']; //hard coded for now
+$user_id = $_SESSION['user_id']; 
 $report_status = 'OPEN'; //auto
 $report_date_made = date('Y-m-d');
 
