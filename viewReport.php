@@ -4,8 +4,9 @@ get the value from the select element, if the user did not choose then the defau
 would be the statusSearch*/
 include 'DBConnector.php';
 
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 //intialize
 $conditions = [];
 
@@ -13,11 +14,22 @@ $conditions = [];
 $statusSearch = $_POST['statusSearch'] ?? 'ALL';
 $dateSearch = $_POST['datePreset'] ?? 'ALL';
 
-//output the statusSearch string
-echo "<p>$statusSearch</p>";
-echo "<p>{$_SESSION['user_id']}</p>"; //the page saves the credentials of the user from the loginView
+// //output the statusSearch string
+// echo "<p>$statusSearch</p>";
+// echo "<p>{$_SESSION['user_id']}</p>"; //the page saves the credentials of the user from the loginView
 
-//create the query depending on the search status you want
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+echo "<p>Search Status: " . htmlspecialchars($statusSearch) . "</p>";
+
+//in case user is not logged in, also for checking if user is admin
+$userId = $_SESSION['user_id'] ?? 'Guest';
+$userRole = $_SESSION['role'] ?? 'Guest';
+
+echo "<p>User ID: $userId | Role: $userRole</p>";
+
 //STATUS FILTER
 if ($statusSearch !== 'ALL') {
     $conditions[] = "report_status = '$statusSearch'";
@@ -76,12 +88,14 @@ echo "<table>";
             <td>{$row['item_desc']}</td>
             <td>{$row['report_type']}</td>
             <td>{$row['report_status']}</td>
+
             <td>"; include 'editReportAction.php';
             include 'deleteReportAction.php';
             include 'claimReportAction.php';
             //create 4th button
             include 'resolveReportAction.php';
             echo "</td>
+
 
         </tr>
         ";
