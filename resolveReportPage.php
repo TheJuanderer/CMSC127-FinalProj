@@ -1,4 +1,6 @@
 <?php
+/*this script returns a button if the conditions for resolving claims in a report is met */
+
 include 'DBConnector.php';
 session_start();
 

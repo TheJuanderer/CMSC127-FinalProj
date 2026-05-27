@@ -1,7 +1,7 @@
-
-
 <?php
+/*this script returns a button if the conditions for resolving a report is met */
 
+//get values to be used 
 $sessionUserID = (int)$_SESSION['user_id'];
 $reportUserID = (int)$row['user_id'];
 $reportID = (int)$row['report_id'];
