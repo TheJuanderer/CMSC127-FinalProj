@@ -4,13 +4,13 @@
 
 
 //get the id of the user, and the current report
-$userID = $row['user_id'];
+$reportUserID = $row['user_id'];
 $sessionUserID =  $_SESSION['user_id'];
 
 
 //if they are the same, return a button element
 //since the user can only edit his own reports
-if ($userID === $sessionUserID){
+if ($reportUserID === $sessionUserID){
     echo '<form action="updateReportPage.php" method="POST">
     <input 
     type="hidden" 
