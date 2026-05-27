@@ -1,6 +1,6 @@
 <?php
-include 'DBCommector.php';
-include 'checkProtectedPage.php';
+include 'DBConnector.php';
+session_start();
 
 $user_id = $_SESSION['user_id'];
 $report_id = $_POST['report_id'] ?? null;
@@ -22,9 +22,10 @@ if ($report['user_id'] != $user_id) {
 }
 
 // close the report
+/*
 $conn->query("UPDATE reports SET report_status = 'CLOSED' WHERE report_id = $report_id");
-
-header("Location: viewReport.php");
+*/
+header("Location: dashboardPage.php");
 exit();
 
 ?>
