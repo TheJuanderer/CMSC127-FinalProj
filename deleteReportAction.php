@@ -1,4 +1,6 @@
 <?php
+/*this script returns a button if the conditions for deleting a report is met */
+
 //get the id of the user in SESSION, and the current report
 $reportUserID = $row['user_id'];
 $sessionUserID =  $_SESSION['user_id'] ?? null; //in case dashboard is used by guest

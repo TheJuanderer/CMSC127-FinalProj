@@ -1,4 +1,6 @@
 <?php
+/*this script returns a button if the conditions for creating claims in a report is met */
+
 //get the id of the user in SESSION, and the current report
 $reportUserID = $row['user_id'];
 $reportType = $row['report_type'];
@@ -23,10 +25,15 @@ $check = $conn->query("
 //since the user can only claim other users reports, and that report must be a Found report 
 //and an OPEN report
 if ($reportUserID === $sessionUserID || $reportType === "Lost" || $reportStat === "CLOSED"){
-    echo "<p>can't claim this report</p>";
+    echo '<button type="submit" disabled title = "can\'t claim this report" style="cursor: not-allowed; opacity: 0.6;" onclick="return confirm(\'are you sure you want to claim this?\')">
+        claim
+    </button>';
     
 } else if ($check->num_rows > 0) {
-    echo "<p>you have a claim in this report</p>";
+    echo '<button type="button" disabled title="you have a claim in this report" style="cursor: not-allowed; opacity: 0.6;">
+        claim
+    </button>';
+
 } else {
     echo '<form action="createClaim.php" method="POST">
     <input 
