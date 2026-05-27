@@ -15,7 +15,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
         <title>Dashboard</title>
     </head>
     <body>
-        <table> 
+        <table border="1" cellpadding="10"> 
             <tr>
                 <!-- ADDED ELEMENTS DYNAMIC TO ROLE  -->
                 <td>

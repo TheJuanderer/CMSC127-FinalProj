@@ -51,8 +51,6 @@ if ($dateSearch !== 'ALL') {
     if ($dateSearch === 'LAST_30') {
         $conditions[] = "report_date_made >= DATE_SUB(NOW(), INTERVAL 30 DAY)";
     }
-
-    // CUSTOM will come later when you add dateFrom/dateTo inputs
 }
 
     // TYPE FILTER (Lost / Found)
@@ -76,7 +74,7 @@ if (count($conditions) > 0) {
 $rows = fetchAllRows($conn, $repQuery);
 
     //returns info about the reports as html elements
-echo "<table>";
+echo "<table border='1' cellpadding='10'>";
     //enter column names
     echo "
         <tr>

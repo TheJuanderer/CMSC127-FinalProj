@@ -22,7 +22,7 @@ $report = $result->fetch_assoc();
 <html>
 <body>
 
-    <form action="updateReport.php" method="POST">
+    <form action="updateReport.php" method="POST" enctype="multipart/form-data">
 
         <table style="width:100%">
             
