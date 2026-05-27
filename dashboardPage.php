@@ -2,19 +2,47 @@
 this is where a user can view reports using the status
 this is also where the user can click a link to create a report
 this is also where a user can claim or unclaim a report -->
+<?php
+// Ensure session tracking is running before rendering the HTML content
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$isLoggedIn = isset($_SESSION['user_id']);
+?>
 <!DOCTYPE html>
 <html>
     <head>
-    
+        <title>Dashboard</title>
     </head>
     <body>
         <table> 
             <tr>
-                <td><a href="logout.php">log-out</a></td>
-                <td><a href="newReportPage.php">create reports</a></td>
+                <!-- ADDED ELEMENTS DYNAMIC TO ROLE  -->
+                <td>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <p style="color: green;">You are logged in.</p>
+                    <?php else: ?>
+                        <p style="color: red;">You are browsing as a guest.</p>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <a href="logout.php">logout</a>
+                    <?php else: ?>
+                        <a href="loginPage.php">log-in</a>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if ($isLoggedIn): ?>
+                        <a href="newReportPage.php">create reports</a>
+                    <?php else: ?>
+                        <span title="Please log in to create reports" style="color: gray; text-decoration: none; cursor: not-allowed;">
+                            create reports
+                        </span>
+                    <?php endif; ?>
+                </td>
             </tr>
         </table>
-       
         <h2>This is the dashboard!</h2>
 
         <h3>Reports available</h3>
@@ -64,7 +92,8 @@ this is also where a user can claim or unclaim a report -->
                 <tr>
                     <td></td>   
                     <td>
-                        <button type="submit">Search</button>
+                        <button type="submit" class="auth-required">Search</button>
+
                     </td>
                 </tr>
                 
