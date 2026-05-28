@@ -11,6 +11,8 @@ $sessionUserRole = $_SESSION['role'] ?? 'user';
 $isAdmin = ($sessionUserRole == 'admin');
 $isOwner = ($sessionUserID !== null && $reportUserID === $sessionUserID);
 
+//ADDED ELEMENTS DYNAMIC TO ROLE
+
 //if permissions sufficient
 if ($isOwner || $isAdmin) {
     echo '<form action="updateReportPage.php" method="POST" style="display:inline;">
