@@ -9,6 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $isLoggedIn = isset($_SESSION['user_id']);
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,19 +27,21 @@ $isLoggedIn = isset($_SESSION['user_id']);
                     <?php endif; ?>
                 </td>
                 <td>
-                    <?php if (isset($_SESSION['user_id'])): ?>
-                        <a href="logout.php">logout</a>
+                    <?php if ($isLoggedIn): ?>
+                        <a href="logout.php" style="margin-right: 10px;">logout</a>
+                        
+                        <?php 
+                        $role = $_SESSION['role'] ?? 'user';
+                        if (strtolower($role) === 'admin'): 
+                        ?>
+                            <a href="adminPanel.php">Admin Panel</a>
+                        <?php endif; ?>
+                        
                     <?php else: ?>
                         <a href="loginPage.php">log-in</a>
                     <?php endif; ?>
-                    <?php
-                        if ($_SESSION['role'] === 'admin') {
-                            echo "<a href='adminPanel.php'>Admin Panel</a>";
-                        }
-                        
-                    ?>
                 </td>
-                <td>
+                                <td>
                     <?php if ($isLoggedIn): ?>
                         <a href="newReportPage.php">create reports</a>
                     <?php else: ?>

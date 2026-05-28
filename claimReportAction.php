@@ -2,13 +2,21 @@
 /*this script returns a button if the conditions for creating claims in a report is met */
 
 //get the id of the user in SESSION, and the current report
+$sessionUserID = $_SESSION['user_id'] ?? null;
+
+//gGet the rest of the report row details
 $reportUserID = $row['user_id'];
 $reportType = $row['report_type'];
 $reportStat = $row['report_status'];
 $reportID = $row['report_id'];
-$sessionUserID =  $_SESSION['user_id'];
 
-
+// GUEST CHECK
+if ($sessionUserID === null) {
+    echo '<button type="button" disabled title="Please log in to claim reports" style="cursor: not-allowed; opacity: 0.6;">
+        claim
+    </button>';
+    return; //
+}
 
 //check if your claim exists in this report
 $check = $conn->query("
