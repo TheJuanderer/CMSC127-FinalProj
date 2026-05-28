@@ -31,7 +31,7 @@ if ($sqlRes->num_rows > 0) {
 
     if ($sqlRes) {
         echo "User created successfully!";
-        header("Location: loginPage.php");
+        header("Location: loginView.php");
     } else {
         echo "Error: " . $conn->error;
     }
