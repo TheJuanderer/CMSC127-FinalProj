@@ -39,6 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button type="submit">Login</button>
 </form>
 
+<a href="dashboardPage.php">Proceed as Guest</a>
+
 <br>
 
 <a href="registerPage.php">
