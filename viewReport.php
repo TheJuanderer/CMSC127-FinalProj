@@ -64,7 +64,9 @@ if ($dateSearch !== 'ALL') {
     }
 
 // BASE QUERY
-$repQuery = "SELECT *, users.name FROM reports JOIN users ON reports.user_id = users.user_id";
+$repQuery = "SELECT *, users.name FROM reports 
+JOIN users ON reports.user_id = users.user_id
+JOIN categories ON reports.category_id = categories.category_id";
 
 // ATTACH CONDITIONS IF ANY
 if (count($conditions) > 0) {
@@ -79,8 +81,8 @@ echo "<table border='1' cellpadding='10'>";
     echo "
         <tr>
             <th>Report ID</th>
-            <th>Category ID</th>
-            <th>Who Created this report?</th>
+            <th>Category</th>
+            <th>Report Creator</th>
             <th>Item Description</th>
             <th>Report Type</th>
             <th>Status</th>
@@ -93,7 +95,7 @@ echo "<table border='1' cellpadding='10'>";
         echo "
         <tr>
             <td>{$row['report_id']}</td>
-            <td>{$row['category_id']}</td>
+            <td>{$row['category_name']}</td>
             <td>{$row['name']}</td>
             <td>{$row['item_desc']}</td>
             <td>{$row['report_type']}</td>
