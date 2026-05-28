@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="style.css">
+
 <h1>Make a report</h1>
     <br>
     <form action="addReport.php" method="POST" enctype="multipart/form-data">

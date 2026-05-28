@@ -14,9 +14,10 @@ $isLoggedIn = isset($_SESSION['user_id']);
 <html>
     <head>
         <title>Dashboard</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <table border="1" cellpadding="10"> 
+        <table border="1" cellpadding="10">          
             <tr>
                 <!-- ADDED ELEMENTS DYNAMIC TO ROLE  -->
                 <td>
@@ -30,12 +31,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
                     <?php if ($isLoggedIn): ?>
                         <a href="logout.php" style="margin-right: 10px;">logout</a>
                         
-                        <?php 
-                        $role = $_SESSION['role'] ?? 'user';
-                        if (strtolower($role) === 'admin'): 
-                        ?>
-                            <a href="adminPanel.php">Admin Panel</a>
-                        <?php endif; ?>
                         
                     <?php else: ?>
                         <a href="loginPage.php">log-in</a>

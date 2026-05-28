@@ -87,6 +87,7 @@ echo "<table border='1' cellpadding='10'>";
             <th>Who Created this report?</th>
             <th>Item Description</th>
             <th>Report Type</th>
+            <th>image</th>
             <th>Status</th>
             <th>Actions</th>
         </tr>
@@ -101,6 +102,7 @@ echo "<table border='1' cellpadding='10'>";
             <td>{$row['user_name']}</td>
             <td>{$row['item_desc']}</td>
             <td>{$row['report_type']}</td>
+            <td align='center'><img src='".$row["image_url"] . "' width='200' alt='Item Photo'> </td>.
             <td>{$row['report_status']}</td>
 
             <td>"; include 'editReportAction.php';
